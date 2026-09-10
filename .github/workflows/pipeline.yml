@@ -159,7 +159,9 @@ jobs:
 
   testePerfomance: 
     runs-on: ubuntu-latest 
-    #needs: testeFuncionais-PRE
+    needs:
+      - testeFuncionais-PRE
+      - Teste-Integrado
     #if: github.ref == 'refs/heads/release' 
     steps: 
       - uses: actions/checkout@v3 
