@@ -5,7 +5,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  unit-test:
+
+
+
+############## TESTE UNITARIO ################
+  Teste-UNITARIO:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -34,10 +38,11 @@ jobs:
         with:
           name: jacoco-report
           path: target/site/jacoco
-
-  build:
+############## BUILD ################
+  
+  BUILD:
     runs-on: ubuntu-latest
-    needs: unit-test 
+    needs: Teste-UNITARIO
     steps:
       - uses: actions/checkout@v3
         with:
@@ -67,7 +72,7 @@ jobs:
   deploy-STG:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' 
-    needs: build
+    needs: BUILD
     steps:
       - name: Deploy
         run: echo "Deploy STG"
@@ -88,7 +93,7 @@ jobs:
   deploy-PRE:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/release' 
-    needs: build
+    needs: BUILD
     steps:
       - name: Deploy
         run: echo "Deploy PRE"
@@ -122,7 +127,7 @@ jobs:
   deploy-PRD:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' 
-    needs: build
+    needs: BUILD
     steps:
       - name: Deploy
         run: echo "Deploy PRODUCAO"
@@ -152,7 +157,7 @@ jobs:
 
   ############## DEPLOY PERFOMANCE ################
 
-    testePerfomance: 
+  testePerfomance: 
     runs-on: ubuntu-latest 
     #needs: testeFuncionais-PRE
     #if: github.ref == 'refs/heads/release' 
