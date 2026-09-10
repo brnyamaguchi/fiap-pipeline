@@ -109,7 +109,6 @@ jobs:
   testeFuncionais: 
     runs-on: ubuntu-latest 
     needs: SmoketestPre 
-     
     if: github.ref == 'refs/heads/release' 
     steps: 
       - uses: actions/checkout@v3 
@@ -120,6 +119,7 @@ jobs:
 
   deploy-PRE:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/release' 
     needs: build
     steps:
       - name: Deploy
@@ -131,3 +131,15 @@ jobs:
     steps:
       - name: Deploy
         run: echo "Deploy PRODUCAO"
+        
+  SmoketestPROD: 
+    runs-on: ubuntu-latest 
+    needs: deploy-Pre 
+     
+    if: github.ref == 'refs/heads/release' 
+    steps: 
+      - uses: actions/checkout@v3 
+      - name: Deploy  
+        shell: bash 
+        run: | 
+            sh 'src/main/scripts/smoketest.sh'   
