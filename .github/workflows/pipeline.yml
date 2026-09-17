@@ -39,7 +39,7 @@ jobs:
           name: jacoco-report
           path: target/site/jacoco
 
-
+############## TESTE SONAR ################
 
   code-analisys: 
     runs-on: ubuntu-latest 
@@ -110,7 +110,7 @@ jobs:
   deploy-STG:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' 
-    needs: code-analisys
+    needs: BUILD
     steps:
       - name: Deploy
         run: echo "Deploy STG"
@@ -131,7 +131,7 @@ jobs:
   deploy-PRE:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/release' 
-    needs: code-analisys
+    needs: BUILD
     steps:
       - name: Deploy
         run: echo "Deploy PRE"
