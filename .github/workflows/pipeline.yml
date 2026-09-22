@@ -205,7 +205,7 @@ jobs:
     runs-on: ubuntu-latest 
     if: github.ref == 'refs/heads/main'    
     environment: 
-    name: AZURE-PRD        
+    name: AZURE-PRD
     url: https://devopsfiap-on-app.azurewebsites.net/ 
     steps: 
       - name: Download JAR 
