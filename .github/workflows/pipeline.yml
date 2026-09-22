@@ -200,7 +200,7 @@ jobs:
 ############## DEPLOY AZURE     ################
   deploy-azure:
     needs: Build
-    name: Deploy-azure
+    name: deploy-AZURE
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     environment:
