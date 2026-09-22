@@ -193,8 +193,6 @@ jobs:
         run: | 
             sh 'src/main/scripts/smoketest.sh'
 
-
-
 ############## DEPLOY PERFOMANCE ################
 
 ############## DEPLOY AZURE     ################
